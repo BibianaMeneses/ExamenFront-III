@@ -1,30 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import { useReducer } from "react";
+
+const storedUserData = JSON.parse(localStorage.getItem("favoriteUsers"));
+
+const reducer = (users, action) => {
+  switch (action.type) {
+    case 'deleteUser':
+      const index = users.indexOf(action.user);
+      users.splice(index, 1);
+      console.log(users);
+      localStorage.setItem("favoriteUsers", JSON.stringify(users));
+      location.reload();
+      return users;
+    default:
+      return users;
+  }
+};
 
 const Favs = () => {
-  const [favoriteUser, setFavoriteUser] = useState(null);
+  const [users, dispatch] = useReducer(reducer, storedUserData);
 
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('favoriteUser'));
-
-    if (storedUser) {
-      setFavoriteUser(storedUser);
-    }
-  }, []);
+  const handleDeleteFavorite = (user) => {
+    dispatch({
+      type: 'deleteUser',
+      user: user
+    });
+  }
 
   return (
-    <div className='mt-7'>
+    <div className="mt-6">
       <style>
         {`
           .user-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 30px;
           }
 
           .user-card {
             text-align: center;
-            border: 1px solid #ddd;
-            padding: 10px;
+            padding: 30px;
           }
 
           .user-card img {
@@ -32,22 +46,41 @@ const Favs = () => {
             display: block;
             margin: 0 auto;
           }
+
+          .delete-favorite-button {
+            margin-top: 10px;
+            background-color: #ff333c;
+            color: black;
+            border-radius: 10px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            cursor: pointer;
+          }
         `}
       </style>
-
       <h1 className="text-4xl font-bold pt-7 mb-7">Favoritos</h1>
-      {favoriteUser && (
-        <div className="user-grid">
-          <div key={favoriteUser.id} className="user-card">
-            <img src="/images/doctor.jpg" alt="Avatar" />
+      <div className="user-grid">
+        {users.map((user) => (
+          <div key={user.id} className="user-card">
+            <img src="/images/doctor.jpg" alt="Foto médico" />
+            <div className="mt-5">
+              <strong>Nombre:</strong> {user.name}
+            </div>
             <div>
-              <strong>Código:</strong> {favoriteUser.id} <br />
-              <strong>Nombre usuario:</strong> {favoriteUser.username} <br />
-              <strong>Nombre del médico:</strong> {favoriteUser.name}
+              <button
+                className="delete-favorite-button"
+                onClick={() => handleDeleteFavorite(user)}
+              >
+                Eliminar de favoritos
+              </button>
             </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
+
     </div>
   );
 };

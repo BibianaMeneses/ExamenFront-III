@@ -22,9 +22,14 @@ const UserList = () => {
   }, []);
 
   const addFavs = (user) => {
+    let favoriteUsers = JSON.parse(localStorage.getItem("favoriteUsers"))
+    if(favoriteUsers == null){
+      favoriteUsers = [];
+    }
+    favoriteUsers.push(user)
+    localStorage.setItem("favoriteUsers", JSON.stringify(favoriteUsers));
+    window.location.href = "/favs";
     console.log(`Usuario ${user.id} añadido a favoritos`);
-    localStorage.setItem("favoriteUser", JSON.stringify(user));
-    window.location.href = "/Favs";
   };
 
   const viewDetails = (user) => {
