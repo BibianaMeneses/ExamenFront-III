@@ -41,19 +41,18 @@ const UserList = () => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="mt-6">
       <style>
         {`
           .user-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 30px;
           }
 
           .user-card {
             text-align: center;
-            border: 1px solid #ddd;
-            padding: 10px;
+            padding: 30px;
           }
 
           .user-card img {
@@ -64,21 +63,21 @@ const UserList = () => {
 
           .favorite-button {
             margin-top: 10px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
+            background-color: #FF7F50;
+            color: black;
+            border-radius: 10px;
             padding: 8px 16px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
           }
           .doctor-button {
-            background-color: #2196F3;
+            background-color: #00FFFF;
             margin-top: 10px;
-            color: white;
-            border: none;
+            color: black;
+            border-radius: 10px;
             padding: 8px 16px;
             text-align: center;
             text-decoration: none;
@@ -93,7 +92,7 @@ const UserList = () => {
       <div className="user-grid">
         {users.map((user) => (
           <div key={user.id} className="user-card">
-            <img src="/images/doctor.jpg" alt="Avatar" />
+            <img src="/images/doctor.jpg" alt="Foto médico" />
             <div className="mt-5">
               <strong>Nombre:</strong> {user.name}
             </div>

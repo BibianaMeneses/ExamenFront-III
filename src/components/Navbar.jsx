@@ -5,8 +5,8 @@ const Navbar = () => {
   return (
     <div className="bg-gray-100 flex">
       <div className="block">
-        <h3 className="text-2xl font-semibold pt-4">
-          <span className="text-red-600 font-semibold">DH</span> Odontología Olga&Bibiana
+        <h3 className="text-2xl font-semibold">
+          <span className="text-red-600 font-bold">DH</span> Odontología Olga&Bibiana
         </h3>
       </div>
       <nav className="justify-end">
@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/favs">
           <h4 className="font-semibold">Favoritos</h4>
         </Link>
-        <div className="pt-6">
+        <div className="pt-1">
         <button className="font-semibold" id="cambiarTema">Tema</button>
       </div>
       </nav>

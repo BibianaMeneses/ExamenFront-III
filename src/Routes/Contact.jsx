@@ -6,10 +6,10 @@ const Contact = (props) => {
 
   return (
     <div className="mt-10">
-      <h2 className="text-left text-2xl font-bold">
+      <h2 className="text-center text-2xl font-bold">
         ¿Quieres obtener más información?
       </h2>
-      <p className="text-left">
+      <p className="text-center">
         Envíanos tus preguntas y te contactaremos lo más pronto posible
       </p>
       <Form />
